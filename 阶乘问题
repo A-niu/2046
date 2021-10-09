@@ -1,0 +1,33 @@
+//递归法 
+#include <iostream>
+using namespace std;
+int factorial(int num)
+{
+    if (num == 0) //基本情况返回1;
+        return 1;
+    else
+        return num * factorial(num - 1);
+}
+
+int main()
+{
+	cout << factorial(3) << endl;
+	return 0; 
+}
+
+//递推法
+#include <iostream>
+using namespace std;
+
+int main()
+{
+ int n,y=1,i;
+ cin>>n;
+ if(n==0||n==1) y=1;//n是0或1的时候阶乘都是1 
+ else for( i=1;i<=n;i++)//从1开始乘，一直乘到n 
+ {
+  y=i*y;//每次让i乘他前面数的阶乘 
+ }
+ cout<<y;
+ return 0;
+  } 
