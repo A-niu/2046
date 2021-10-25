@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef int Elemtype; 
+void Merge(Elemtype *R,int low,int m,int high)//归并排序——排序 
+{
+	int i=low,j=m+1,p=0;                //m代表中点 
+  	Elemtype *R1;                      //动态分配空间，存储排好序的序列，然后复制给指针R所指向的地址 
+    R1=(Elemtype *)malloc((high-low+1)*sizeof(Elemtype));  //分配空间 
+    if(!R1)  
+    {  
+        return;                           
+    }  
+    while(i<=m&&j<=high)                  //排出序列左边和右边 
+    {  
+        R1[p]=(R[i]<=R[j])?R[i++]:R[j++];  
+        p++;
+    }   
+    while(i<=m)                          //当左边还没排完时，直接加到后面 
+    {  
+        R1[p++]=R[i++];  
+    }  
+    while(j<=high)                  //当右边还没排完时，直接加到后面       
+    {  
+        R1[p++]=R[j++];  
+    }  
+    for(p=0,i=low;i<=high;p++,i++)  //复制给R 
+    {  
+        R[i]=R1[p];                      
+    } 
+}
+void Merge_Sort(Elemtype *R,int low,int high)  //归并排序——分割 
+{     
+    int mid;  //中点 
+    if(low<high)  
+    { 
+        mid=(low+high)/2;       	//以中点对两边进行分割       
+        Merge_Sort(R,low,mid);        //左边	 
+        Merge_Sort(R,mid+1,high);        //右边 
+        Merge(R,low,mid,high);         //分割完成的进行排序 
+    }  
+}
+int main()
+{
+	int num;
+	char flag;
+	Elemtype *p1,*p2;
+	printf("请输入要排序的数的个数\n");
+	scanf("%d",&num);
+	p1=(Elemtype*)malloc(num*sizeof(Elemtype)); 
+	if(!p1)
+	{
+		printf("分配不成功\n");
+		exit(0);
+	}
+	printf("请输入排序数\n");
+	p2=p1;
+	for(;p2<p1+num;p2++)
+		{
+			scanf("%d",p2);
+		}
+	Merge_Sort(p1,0,num-1);	
+	p2=p1;
+	printf("排序后的结果为\n");
+	for(;p2<p1+num;p2++)
+		{
+			printf("%d ",*p2);
+		}
+	return 0;
+ }
