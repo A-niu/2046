@@ -57,7 +57,7 @@ int main()
     //排序前数组序列
     printf("排序前数组序列：\n");
     Show( arr_test, Max_len );
-    //调用计数排序
+    //调用桶排序
     BucketSort( arr_test,  Max_len);
     //排序后数组序列
     printf("排序后数组序列：\n");
