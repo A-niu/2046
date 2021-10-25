@@ -10,7 +10,7 @@ int main()
 	cout << "排序前：" << endl;
 	input(a,len);
 	QuickSort(a,0,len - 1);
-	cout << "\n\n排序后(快速排序)：" << endl;
+	cout << "\n\n排序后：" << endl;
 	input(a,len);
 	return 0;
 }
